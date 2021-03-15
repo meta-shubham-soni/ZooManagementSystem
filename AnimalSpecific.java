@@ -1,19 +1,60 @@
 
 public class AnimalSpecific extends AnimalCategory {
-	String animalSound;
-	String intrestingFact;
-	int animalAge;
-	int animalWeight;
-	AnimalSpecific(int id,String name,String category,int age,int weight,String sound,String intrestingFact){
-		super(id,name,category);
+
+	//Constructor initializing the animalName
+	AnimalSpecific(String category,String name,String type){
+		super(category);
+		animalName = name;
+		animalType = type;
+	}
+	///////setters///////
+	@Override
+	void setId(int animalId) {
+		id = animalId;
+	}
+		
+	
+	@Override
+	void setName(String nameInp) {
+		name = nameInp;
+		
+	}
+	@Override
+	void setAge(double inputAge){
+		age = inputAge;
+	}
+	@Override
+	void setWeight(double inputWeight){
+		weight = inputWeight;
+	}
+	@Override
+	void setSound(String sound){
 		animalSound = sound;
-		this.intrestingFact = intrestingFact;
-		animalAge = age;
-		animalWeight = weight;
 	}
 	
-	String getSound(){
-		return animalSound;
+	///////setters///////
+	@Override
+	String getName(){
+		return animalName;
 	}
-	
+	@Override
+	String getAnimalCategory(){
+		return animalCategory;
+	}
+	@Override
+	String getAnimalType(){
+		return animalType;
+	}
+	@Override
+	String getAnimalName() {
+		return animalName;
+	}
+	@Override
+	int getId() {
+		return id;
+	}
+	@Override
+	String getSound() {
+		return "Roar";
+	}
 }

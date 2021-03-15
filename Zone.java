@@ -1,27 +1,61 @@
-import java.util.*;
+import java.util.ArrayList;
 
 public class Zone {
-	int zoneId;
-	String animalCategory;
-	int limitOfCages;
+	private final int MAX_CAGE = 3;
+	String category;
 	boolean hasPark;
 	boolean hasCanteen;
-	List<Cage> listOfCages;
+	private ArrayList<Cage> cages = new ArrayList<>();
 	
-	Zone(int zoneId,String category,int limitOfCages,boolean hasPark,boolean hasCanteen){
-		this.zoneId = zoneId;
-		animalCategory = category;
-		this.limitOfCages = limitOfCages;
-		this.hasPark = hasPark;
-		this.hasCanteen = hasCanteen;
-		listOfCages = new ArrayList<Cage>();
+	//setter
+	void setCategory(String cat){
+		category  = cat;
+	}
+	//getter
+	String getCategory(){
+		return category;
+	}
+	ArrayList<Cage> getCages(){
+		return cages;
 	}
 	
-	public int addCage(Cage newCage){
-		if(listOfCages.size() >= limitOfCages)
-			return -1;
+	/**
+	 * takes animal object as an argument and add to the specific type of cage 
+	 * will assign new cage if cage is Full
+	 * @param animal
+	 * @return
+	 */
+	boolean addAnimal(Animal animal){
+		if(cages.size()==MAX_CAGE){
+			return false;
+		}
+		boolean animalAdded = false;
+		for(Cage cage:cages){
+
+			if(cage.getCurrentCap()<cage.getCap() && cage.getType().equals(animal.getAnimalType())){
+				
+				cage.addAnimal(animal);
+				animalAdded = true;
+				break;
+			}
+		}
+		if(!animalAdded){
+
+			Cage cage = new Cage();
+			cage.addAnimal(animal);
+			cages.add(cage);
+		}
+		return true;
+	}
+
+	/**
+	 * display all the cages in the zone
+	 */
+	public void dispayCages() {
+		for(Cage cage:cages){
+			System.out.println("*********CAGE :"+cage.getType()+"*********");
+			cage.showAnimals();
+		}
 		
-		listOfCages.add(newCage);
-		return 1;
 	}
 }

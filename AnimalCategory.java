@@ -1,8 +1,10 @@
 
-public class AnimalCategory extends Animal {
-	String categoryName;
-	AnimalCategory(int id,String name,String category){
-		super(id,name);
-		categoryName = category;
+public abstract class AnimalCategory extends Animal{
+	
+
+	//initializing the type
+	AnimalCategory(String type){
+		animalCategory = type;
 	}
+
 }
